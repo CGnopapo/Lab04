@@ -21,6 +21,50 @@ const EIXO_X = 0;
 const EIXO_Y = 1;
 const EIXO_Z = 2;
 
+const RED = [
+        vec4(1.0, 0.0, 0.0, 1.0), // vermelho
+        vec4(1.0, 0.0, 0.0, 1.0), // vermelho
+        vec4(1.0, 0.0, 0.0, 1.0), // vermelho
+        vec4(1.0, 0.0, 0.0, 1.0), // vermelho
+        vec4(1.0, 0.0, 0.0, 1.0), // vermelho
+        vec4(1.0, 0.0, 0.0, 1.0), // vermelho
+        vec4(1.0, 0.0, 0.0, 1.0), // vermelho
+        vec4(1.0, 0.0, 0.0, 1.0), // vermelho
+    ];
+
+const GREEN = [
+        vec4(0.0, 1.0, 0.0, 1.0), // verde
+        vec4(0.0, 1.0, 0.0, 1.0), // verde
+        vec4(0.0, 1.0, 0.0, 1.0),
+        vec4(0.0, 1.0, 0.0, 1.0),
+        vec4(0.0, 1.0, 0.0, 1.0),
+        vec4(0.0, 1.0, 0.0, 1.0),
+        vec4(0.0, 1.0, 0.0, 1.0),
+        vec4(0.0, 1.0, 0.0, 1.0),
+];
+
+const BLUE = [
+        vec4(0.0, 0.0, 1.0, 1.0),
+        vec4(0.0, 0.0, 1.0, 1.0),
+        vec4(0.0, 0.0, 1.0, 1.0),
+        vec4(0.0, 0.0, 1.0, 1.0),
+        vec4(0.0, 0.0, 1.0, 1.0),
+        vec4(0.0, 0.0, 1.0, 1.0),
+        vec4(0.0, 0.0, 1.0, 1.0),
+        vec4(0.0, 0.0, 1.0, 1.0),
+];
+
+const BLUE_AND_YELLOW = [
+        vec4(0.0, 0.0, 1.0, 1.0),
+        vec4(0.0, 0.0, 1.0, 1.0),
+        vec4(0.0, 0.0, 1.0, 1.0),
+        vec4(0.0, 0.0, 1.0, 1.0),
+        vec4(1.0, 1.0, 0.0, 1.0),
+        vec4(1.0, 1.0, 0.0, 1.0),
+        vec4(1.0, 1.0, 0.0, 1.0),
+        vec4(1.0, 1.0, 0.0, 1.0),
+];
+
 // ==================================================================
 // variáveis globais
 var gl;
@@ -54,16 +98,17 @@ var gaPosicoes = [
   vec3(0.5, 0.5, -0.5),
   vec3(0.5, -0.5, -0.5)
 ];
+
 // cores associadas a cada vértice
 var gaCores = [
-  vec4(0.0, 0.0, 0.0, 1.0),  // black
-  vec4(1.0, 0.0, 0.0, 1.0),  // red
-  vec4(1.0, 1.0, 0.0, 1.0),  // yellow
-  vec4(0.0, 1.0, 0.0, 1.0),  // green
-  vec4(0.0, 0.0, 1.0, 1.0),  // blue
-  vec4(1.0, 0.0, 1.0, 1.0),  // magenta
-  vec4(1.0, 1.0, 1.0, 1.0),  // white
-  vec4(0.0, 1.0, 1.0, 1.0)   // cyan
+  // vec4(0.0, 0.0, 0.0, 1.0),  // black
+  // vec4(1.0, 0.0, 0.0, 1.0),  // red
+  // vec4(1.0, 1.0, 0.0, 1.0),  // yellow
+  // vec4(0.0, 1.0, 0.0, 1.0),  // green
+  // vec4(0.0, 0.0, 1.0, 1.0),  // blue
+  // vec4(1.0, 0.0, 1.0, 1.0),  // magenta
+  // vec4(1.0, 1.0, 1.0, 1.0),  // white
+  // vec4(0.0, 1.0, 1.0, 1.0)   // cyan
 ];
 
 // indices para cada um dos 12 triângulos, 2 por face, que definem o cubo.
@@ -101,13 +146,14 @@ function main() {
   console.log("Canvas: ", gCanvas.width, gCanvas.height);
 
 
-  gObjetos.push(new Cubo(vec3(0.0, 0.0, 0.0), vec3(0.0,0.0,0.0), vec3(1.0,3.0,1.0),
+  gObjetos.push(new Cubo(vec3(0.0, 0.0, 0.0), vec3(0.0,0.0,0.0), vec3(1.0,3.0,1.0), RED,
       vec3(0,0,0), vec3(0,2,0)));
-  gObjetos.push(new Cubo(vec3(-1, 0, -1), vec3(0.0,0.0,0.0), vec3(1.0, 1.0, 1.0),
+  gObjetos.push(new Cubo(vec3(-1, 0, -1), vec3(0.0,0.0,0.0),  vec3(1.0, 1.0, 1.0),GREEN,
                          vec3(0, 0, 0), vec3(0, 2, 0)));
-  gObjetos.push(new Cubo(vec3(-0.5, -0.5, 0.5), vec3(0.0,0.0,0.0), vec3(1.0, 1.0, 1.0),
+  gObjetos.push(new Cubo(vec3(-0.5, -0.5, 0.5), vec3(0.0,0.0,0.0),  vec3(1.0, 1.0, 1.0),BLUE,
                          vec3(0, 0, 0), vec3(0, 2, 0)));
 
+      // console.log(gaCores);
   // Inicializações feitas apenas 1 vez
   gl.viewport(0, 0, gCanvas.width, gCanvas.height);
   gl.clearColor(FUNDO[0], FUNDO[1], FUNDO[2], FUNDO[3]);
@@ -193,6 +239,7 @@ function crieShaders() {
  * Assume que os dados já foram carregados e são estáticos.
  */
 function render() {
+  // gaCores = [];
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   // modelo muda a cada frame da animação
@@ -210,9 +257,9 @@ function render() {
   for (let i = 0; i < gObjetos.length; i++) {
 
       gObjetos[i].atualiza_model(1)
-    gl.uniformMatrix4fv(gShader.uModelView, false, flatten(mult(gCtx.vista, gObjetos[i].model)));
-      // console.log(gObjetos[i].num_vertices)
-      gl.drawElements(gl.TRIANGLES, gObjetos[i].num_vertices, gl.UNSIGNED_BYTE, 0);
+      gl.uniformMatrix4fv(gShader.uModelView, false, flatten(mult(gCtx.vista, gObjetos[i].model)));
+    // gaCores.push(gObjetos[i].cor);
+    gl.drawElements(gl.TRIANGLES, gObjetos[i].num_vertices, gl.UNSIGNED_BYTE, 0);
       num_vertices_ate_agr += gObjetos[i].num_vertices;
 
   }
@@ -258,6 +305,7 @@ function Cubo(translacao, rotacao, escala, cor, vel_trans, vel_rota) {
     this.translacao = translacao;
     this.rotacao = rotacao;
     this.escala = escala;
+  this.cor = cor;
     this.vel_trans = vel_trans;
     this.vel_rota = vel_rota;
     let S = scale(escala[0], escala[1], escala[2]);
@@ -300,16 +348,17 @@ function crie_cubo(objeto) {
         vec3( 0.5, -0.5, -0.5)  // 7
     ];
 
-    let cores = [
-        vec4(0.0, 0.0, 0.0, 1.0), // preto
-        vec4(1.0, 0.0, 0.0, 1.0), // vermelho
-        vec4(1.0, 1.0, 0.0, 1.0), // amarelo
-        vec4(0.0, 1.0, 0.0, 1.0), // verde
-        vec4(0.0, 0.0, 1.0, 1.0), // azul
-        vec4(1.0, 0.0, 1.0, 1.0), // magenta
-        vec4(1.0, 1.0, 1.0, 1.0), // branco
-        vec4(0.0, 1.0, 1.0, 1.0)  // ciano
-    ];
+    // let cores = [
+    //     vec4(0.0, 0.0, 0.0, 1.0), preto
+    //     vec4(1.0, 0.0, 0.0, 1.0), vermelho
+    //     vec4(1.0, 1.0, 0.0, 1.0), amarelo
+    //     vec4(0.0, 1.0, 0.0, 1.0), // verde
+    //     vec4(0.0, 0.0, 1.0, 1.0), azul
+    //     vec4(1.0, 0.0, 1.0, 1.0), magenta
+    //     vec4(1.0, 1.0, 1.0, 1.0), branco
+    //     vec4(0.0, 1.0, 1.0, 1.0)  ciano
+    // ];
+  let cores = objeto.cor;
 
     let indices = [
         1, 0, 3,  3, 2, 1,  // frente
