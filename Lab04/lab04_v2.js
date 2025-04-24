@@ -194,6 +194,19 @@ function crieShaders() {
   gShader.program = makeProgram(gl, gVertexShaderSrc, gFragmentShaderSrc);
   gl.useProgram(gShader.program);
 
+  const cube1_vao = gl.createVertexArray();
+  const cube2_vao = gl.createVertexArray();
+  const cube3_vao = gl.createVertexArray();
+  const cube4_vao = gl.createVertexArray();
+
+  gl.bindVertexArray(cube1_vao);
+
+
+
+  gl.bindVertexArray(cube2_vao);
+  gl.bindVertexArray(cube3_vao);
+  gl.bindVertexArray(cube4_vao);
+
   // buffer dos índices dos vértices
   var bufIndices = gl.createBuffer();
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, bufIndices);
