@@ -1,27 +1,53 @@
+
+/* ==================================================
+    lab04.js
+
+    Autores:
+
+    NUSP - Nome:
+    NUSP - Nome:
+    NUSP - Nome:
+
+    Ao preencher esse cabeçalho com os nomes e número USP dos participantes,
+    declaramos que todas as partes originais desse exercício programa (EP)
+    foram desenvolvidas e implementadas por nosso time e que portanto não
+    constituem desonestidade acadêmica ou plágio.
+
+    Declaramos também que somos responsáveis por todas as cópias desse
+    programa e que não distribuímos ou facilitamos a sua distribuição.
+    Estamos cientes que os casos de plágio e desonestidade acadêmica
+    serão tratados segundo os critérios divulgados na página da
+    disciplina.
+    Entendemos que EPs sem assinatura devem receber nota zero e, ainda
+    assim, poderão ser punidos por desonestidade acadêmica.
+
+================================================== */
 /**
- * Programa usando WegGL para demonstrar a animação 3D de uma esfera
- * em perspectiva com rotação em cada eixo.
- *
- * Bibliotecas utilizadas
+ * Esqueleto de um programa usando WegGL
+ * Dessa vez usando as bibliotecas
  * macWebglUtils.js
- * MVnew.js do livro -- Interactive Computer Graphics
- *
+ * MVnew.js do livro do Angel -- Interactive Computer Graphics
  */
 
 "use strict";
 
 // ==================================================================
+// constantes globais usadas na geração do vídeo
+
+const FUNDO = [0.50, 0.50, 0.50, 1.0];
+
+// as cores são replicadas para os demais vertices do cubo como uma lista circular
+const COR0 = [vec4(1,1,0,1), vec4(0,0,1,0)];  // do eixo central
+const COR1 = [vec4[1,0,0,1]];  // R
+const COR2 = [vec4[0,1,0,1]];  // G
+const COR3 = [vec4[0,0,1,1]];  // B
+"use strict";
+
+// ==================================================================
 // constantes globais
 
-const N_DIVISOES = 2;
 
-const COR_SOLIDA = false;
-const COR_ESFERA = [1.0, 1.0, 0.0, 1.0];
 
-const FUNDO = [0.0, 0.0, 0.0, 1.0];
-const EIXO_X = 0;
-const EIXO_Y = 1;
-const EIXO_Z = 2;
 
 // ==================================================================
 // variáveis globais
@@ -164,7 +190,7 @@ function render() {
 
             gObjetos[i].atualiza_model(1)
             gl.uniformMatrix4fv(gShader.uModelView, false, flatten(gObjetos[i].model));
-
+            console.log(gObjetos[i].num_vertices)
             gl.drawArrays(gl.TRIANGLES, num_vertices_ate_agr, gObjetos[i].num_vertices);
             num_vertices_ate_agr += gObjetos[i].num_vertices;
 
