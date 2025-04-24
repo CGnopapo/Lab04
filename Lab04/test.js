@@ -1,3 +1,3 @@
 console.log("ola")
 
-console.log("olaq")
+var a = 2
