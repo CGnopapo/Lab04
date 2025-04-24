@@ -91,7 +91,7 @@ function main() {
     console.log("Canvas: ", gCanvas.width, gCanvas.height);
 
     // interface
-    crieInterface();
+    //crieInterface();
 
     // Crie objetos aqui
     gObjetos.push(new Cubo(vec3(0.0, 0.0, 0.0), vec3(0.0,0.0,0.0), vec3(1.0,1.0,1.0),
@@ -115,20 +115,7 @@ function main() {
 /**
  * Cria e configura os elementos da interface e funções de callback
  */
-function crieInterface() {
-    document.getElementById("xButton").onclick = function () {
-        gCtx.axis = EIXO_X;
-    };
-    document.getElementById("yButton").onclick = function () {
-        gCtx.axis = EIXO_Y;
-    };
-    document.getElementById("zButton").onclick = function () {
-        gCtx.axis = EIXO_Z;
-    };
-    document.getElementById("pButton").onclick = function () {
-        gCtx.pause = !gCtx.pause;
-    };
-};
+
 
 // ==================================================================
 /**
